@@ -1,18 +1,7 @@
-
-<!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1 style="color: blue; text-align: center">Loan Approval Page</h1>
-	<b>You are approved for loan amount :: <span th:text="${amount}"></span>
-	</b>
-	<br>
-	<br>
-	<a th:href="@{/bank/}">Home</a>
-	<br>
-	<a th:href="@{/signout}">Signout Directly</a>
-</body>
-</html>
+           <html xmlns:th="https://thymeleaf.org">    
+           
+           <h1 style="color:blue;text-align:center"> Loan Approval  Page  </h1>
+                        <b> u  r approved for loan amount ::<span th:text="${amount}"/>  </b> <br>
+            <a th:href="@{/bank/}">Home</a>
+            <br>                       
+           <a th:href="@{/signout}">logout</a>

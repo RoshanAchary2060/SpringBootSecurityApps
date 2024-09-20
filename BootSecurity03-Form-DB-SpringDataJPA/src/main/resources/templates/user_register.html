@@ -1,12 +1,12 @@
 <html xmlns:th="https://thymeleaf.org">
-<form th:action="@{/user/register}" method="POST"
-	th:object="${userInfo}">
-	<table border='0' bgcolor='cyan' align='center'>
+
+<form th:action="@{/user/register}" th:object="${userInfo}"
+	method="POST">
+	<table border="0" bgcolor="cyan" align="center">
 		<tr>
 			<td>username ::</td>
 			<td><input type="text" th:field="*{uname}" /></td>
 		</tr>
-
 		<tr>
 			<td>password ::</td>
 			<td><input type="password" th:field="*{pwd}" /></td>
@@ -16,15 +16,16 @@
 			<td><input type="text" th:field="*{email}" /></td>
 		</tr>
 		<tr>
-			<td>Roles ::</td>
+			<td>Roles:</td>
 			<td><input type="checkbox" th:field="*{roles}" value="CUSTOMER"
-				checked />CUSTOMER <input type="checkbox" th:field="*{roles}"
-				value="MANAGER" />MANAGER</td>
+				checked> CUSTOMER <input type="checkbox"
+				th:field="*{roles}" value="MANAGER"> MANAGER</td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="Register"><br> <input
-				type="reset" value="Clear"></td>
+			<td><input type="submit" value="register"></td>
+			<td><input type="reset" value="cancel"></td>
 		</tr>
 	</table>
+	<input type="hidden" th:name="${_csrf.parameterName}"
+		th:value="${_csrf.token}" />
 </form>
-</html>

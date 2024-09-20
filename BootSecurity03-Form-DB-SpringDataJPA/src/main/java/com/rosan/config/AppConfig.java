@@ -11,4 +11,5 @@ public class AppConfig {
 	public BCryptPasswordEncoder createBCPEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
 }

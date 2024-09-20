@@ -13,31 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+@Table(name = "SECURITY_USERS")
 @Entity
-@Table(name = "security_users")
 public class UserDetails {
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Id
-	private Integer uid;
-	@Column(length = 20, unique = true, nullable = false)
-	private String uname;
-	@Column(length = 150, nullable = false)
-	private String pwd;
-	@Column(length = 50, nullable = false)
-	private String email;
-	private Boolean status = true;
-	@Column(name = "role")
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "security_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "uid"))
 
-	private Set<String> roles;
-
-	public Integer getUid() {
-		return uid;
+	public Integer getUnid() {
+		return unid;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUnid(Integer unid) {
+		this.unid = unid;
 	}
 
 	public String getUname() {
@@ -79,4 +64,21 @@ public class UserDetails {
 	public void setRoles(Set<String> roles) {
 		this.roles = roles;
 	}
+
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	private Integer unid;
+	@Column(length = 20, unique = true, nullable = false)
+	private String uname;
+	@Column(length = 150, nullable = false)
+	private String pwd;
+	@Column(length = 20, nullable = false)
+	private String email;
+	private Boolean status = true;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "SECURITY_ROLES", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "unid"))
+	@Column(name = "role")
+	private Set<String> roles;
+
 }

@@ -1,16 +1,5 @@
-
-<!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1 style="color: red; text-align: center">
-		Authorization failed for <span th:text="${username}"></span> !!!
-	</h1>
-	<br>
-	<br>
-	<a th:href="@{/bank/}">Home</a>
-</body>
-</html>
+ <html xmlns:th="https://thymeleaf.org">    
+           
+          <h1 style="color:red;text-align:center"> Authorization failed  for <span th:text="${username}" >  </span>  </h1>
+          <br>
+          <a th:href="@{/bank/}">home</a>

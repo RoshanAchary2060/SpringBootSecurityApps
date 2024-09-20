@@ -11,16 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/bank")
 public class BankOperationsController {
+
 	@GetMapping("/")
 	public String showHome() {
 		return "home";
-	}
-
-	@GetMapping("/balance")
-	public String checkBalance(Map<String, Object> map) {
-		map.put("amount", new Random().nextInt(100000));
-
-		return "balance";
 	}
 
 	@GetMapping("/offers")
@@ -28,9 +22,15 @@ public class BankOperationsController {
 		return "offers";
 	}
 
+	@GetMapping("/balance")
+	public String checkBalnace(Map<String, Object> map) {
+		map.put("balance_amt", new Random().nextInt(1000000));
+		return "show_balance";
+	}
+
 	@GetMapping("/loanApprove")
 	public String approveLoan(Map<String, Object> map) {
-		map.put("amount", new Random().nextInt(100000));
+		map.put("amount", new Random().nextInt(1000000));
 		return "loan";
 	}
 
@@ -40,8 +40,4 @@ public class BankOperationsController {
 		return "access_denied";
 	}
 
-	@GetMapping("/timeout")
-	public String sessionExpired() {
-		return "session_timeout";
-	}
 }

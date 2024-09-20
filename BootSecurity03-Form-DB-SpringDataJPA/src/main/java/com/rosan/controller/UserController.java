@@ -20,20 +20,24 @@ public class UserController {
 
 	@GetMapping("/register") // for form launching
 	public String showUserRegisterForm(@ModelAttribute("userInfo") UserDetails details) {
+		System.out.println("UserController.showUserRegisterForm()");
 		return "user_register";
 	}
 
 	@PostMapping("/register")
 	public String registerUser(Map<String, Object> map, @ModelAttribute("userInfo") UserDetails details) {
+		System.out.println("UserController.registerUser()");
 		// use service
 		String resultMsg = service.register(details);
-		map.put("resultMsg", resultMsg);
+		map.put("message", resultMsg);
 		// return LVN
 		return "user_registered_success";
+
 	}
 
 	@RequestMapping("/showLogin")
 	public String showLoginPage() {
 		return "custom_login";
 	}
+
 }
