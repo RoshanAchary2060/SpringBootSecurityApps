@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<title>Login Page</title>
+</head>
+<body>
+	<h1 style="color: blue; text-align: center">Login Page</h1>
+	<form th:action="@{/login}" method="POST">
+		<table border='0' bgcolor='cyan' align='center'>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" name="username" /></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password" /></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="Login" /></td>
+				<td><input type="reset" value="Clear" /></td>
+			</tr>
+		</table>
+		<span th:if="${param.error}">Invalid Login details (authentication failed)</span>
+		<span th:if="${param.logout}">User Logged out successfully</span>
+		
+	</form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 style="color: blue; text-align: center">Show Balance Page</h1>
+	<b>balance :: <span th:text="${amount}"></span></b>
+	<br>
+	<br>
+	<a th:href="@{/bank/}">Home</a>
+	<br>
+	<a th:href="@{/signout}">Logout</a>
+</body>
+</html>
