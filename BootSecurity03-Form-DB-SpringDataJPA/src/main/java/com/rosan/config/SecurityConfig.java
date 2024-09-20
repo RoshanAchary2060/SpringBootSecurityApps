@@ -24,42 +24,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		// authorize requests
-		http.authorizeRequests().antMatchers("/bank/").permitAll() // Not authetication an no authorization
-				.antMatchers("/user/register", "/user/showLogin").permitAll().antMatchers("/bank/offers")
-				.authenticated() // only authentication
-				.antMatchers("/bank/balance").hasAnyAuthority("CUSTOMER", "MANAGER") // authentication + authorization
-																						// for "CUSTOMER","MANAGER" role
-																						// uses
-				.antMatchers("/bank/loanApprove").hasAuthority("MANAGER") //// authentication + authorization for
-				.anyRequest().authenticated() // remaing all requests url mus be authtenticated
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/bank/").permitAll().antMatchers("/user/register", "/user/showLogin")
+				.permitAll().antMatchers("/bank/offers").authenticated().antMatchers("/bank/balance")
+				.hasAnyAuthority("CUSTOMER", "MANAGER").antMatchers("/bank/loanApprove").hasAuthority("MANAGER") // Requires
+																													// MANAGER
+																													// role
+				.anyRequest().authenticated() // All other requests require authentication
 
-				// specify authentication mode
-				// .and().httpBasic()
-				.and().formLogin().defaultSuccessUrl("/bank/", true) // HOME page url
-				.loginPage("/user/showLogin") // for GET mode request to launch form page
-				.loginProcessingUrl("/login") // for POST mode request to submit and process the request
-				.failureUrl("/user/showLogin?error") // Authentication failed url
+				.and().formLogin().defaultSuccessUrl("/bank/", true) // Redirect to home after login
+				.loginPage("/user/showLogin") // Custom login page
+				.loginProcessingUrl("/login") // POST request to log in
+				.failureUrl("/user/showLogin?error") // Redirect on login failure
 
-				// add remember filter
-				.and().rememberMe()
-
-				// add Logout Filter
-				// .and().logout()
+				.and().formLogin() // gives facility to logout and relogin
+				.and().rememberMe() // add remember me
+				.and().sessionManagement() // add SessionMaxConcurrency count
+				.and().exceptionHandling().accessDeniedPage("/bank/denied")// error / exception handling
 				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
-				.logoutSuccessUrl("/user/showLogin?logout") // after logout url
-
-				// exception/error handling
-				.and().exceptionHandling().accessDeniedPage("/denied")
-
-				// add SessionMaxConcurrency count
-				.and().sessionManagement().maximumSessions(2).maxSessionsPreventsLogin(true);
-
-		// disable or enable csrf protection
-		// http.csrf().disable(); // By default spring boot security app enabled with
-		// csrf protecttion
-
+				.logoutSuccessUrl("/user/login?logout");
 	}
 
 }

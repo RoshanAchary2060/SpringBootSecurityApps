@@ -1,12 +1,9 @@
 package com.rosan.service;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String register(UserDetails details) {
 		details.setPwd(encoder.encode(details.getPwd()));
-		return userRepo.save(details).getUnid() + " UserId is registered";
+		return userRepo.save(details).getUid() + " UserId is registered";
 	}
 
 	@Override

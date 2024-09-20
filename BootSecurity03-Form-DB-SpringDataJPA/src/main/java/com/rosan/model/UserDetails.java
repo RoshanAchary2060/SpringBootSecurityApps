@@ -17,12 +17,12 @@ import javax.persistence.Table;
 @Entity
 public class UserDetails {
 
-	public Integer getUnid() {
-		return unid;
+	public Integer getUid() {
+		return uid;
 	}
 
-	public void setUnid(Integer unid) {
-		this.unid = unid;
+	public void setUid(Integer uid) {
+		this.uid = uid;
 	}
 
 	public String getUname() {
@@ -67,7 +67,7 @@ public class UserDetails {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private Integer unid;
+	private Integer uid;
 	@Column(length = 20, unique = true, nullable = false)
 	private String uname;
 	@Column(length = 150, nullable = false)
@@ -77,7 +77,7 @@ public class UserDetails {
 	private Boolean status = true;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "SECURITY_ROLES", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "unid"))
+	@CollectionTable(name = "SECURITY_ROLES", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "uid"))
 	@Column(name = "role")
 	private Set<String> roles;
 
